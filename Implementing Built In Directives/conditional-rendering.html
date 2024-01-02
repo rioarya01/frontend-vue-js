@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- Note: Penulisan fungction harus diberi parameter () -->
+        <p v-if="checkWeight()">
+            Kamu boleh bertanding di kelas 60kg
+        </p>
+        <p v-else-if="checkName()">
+            Kamu tetap boleh karena namamu chris
+        </p>
+        <p v-else-if="age < 25">
+            Kamu tetap bole karena umurmu kurang dari 25 tahun
+        </p>
+        <p v-else>
+            Kamu tidak boleh bertanding di kelas 60kg
+        </p>
+        <!-- Pada v-show ini penggunaanya sama dengan v-if, namun bedanya v-show tetap menyimpan outputnya pada DOM walaupun hasilnya tidak dimunculkan -->
+        <p v-show="checkWeight()">
+            Ini menggunakan v-show
+        </p>
+    </div>
+</body>
+<script>
+    const App = {
+        data() {
+            return {
+                weight: 70,
+                allowWeight: 60,
+                age: 20,
+                name: 'chris'
+            }
+        },
+        methods: {
+            checkWeight() {
+                return this.weight > this.allowWeight ? true : false
+            },
+            checkName() {
+                return this.name === 'chris' ? true : false
+            }
+        },
+    }
+    Vue.createApp(App).mount('#app')
+</script>
+</html>

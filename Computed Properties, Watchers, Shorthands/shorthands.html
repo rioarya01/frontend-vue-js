@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-bind shorthand (:) -->
+        <a :href="linkGoogle">
+            go to google
+        </a>
+        <hr>
+        <!-- v-on shorthand (@) -->
+        <button @click="handleActive">active</button>
+        <hr>
+        {{ compMassage }}
+        <hr>
+        {{ compActive }}
+    </div>
+</body>
+<script>
+    const App = {
+        data() {
+            return {
+                name: '',
+                active: false,
+                linkGoogle: 'https://www.google.com'
+            }
+        },
+        watch: {
+            active(value) {
+                if (value === true) {
+                    this.name = 'Zaky'
+                } else {
+                    this.name = ''
+                }
+                console.log(value);
+                console.log('watch the active data')
+            },
+            name(value){
+                console.log(value)
+                if (value === 'Asal') {
+                    alert('Itu bukan nama bosque')
+                }
+            }
+        },
+        computed: {
+            compMassage() {
+                console.log('Computed Massage Typing Massage')
+                return this.name === 'Zaky' ? 'Welcome Home' : 'You are no Allowed'
+            },
+            compActive() {
+                console.log('Computed Massage Active Massage')
+                return this.active === true ? 'This is Active' : 'This is not Active'
+            }
+        },
+        methods: {
+            handleActive() {
+                this.active = !this.active
+            }
+        }
+    }
+    Vue.createApp(App).mount('#app')
+</script>
+</html>

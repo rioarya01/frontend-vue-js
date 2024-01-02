@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div class="box"
+        v-bind:class="[
+        colorStyle2.blueStyle.active ? colorStyle2.blueStyle.name : '',
+        colorStyle2.whiteStyle.active ? colorStyle2.whiteStyle.name : ''
+        ]"
+        v-bind:style="newStyle"
+        >
+            this is my box with normal css
+        </div>
+        <div v-on:click="colorStyle2.whiteStyle.active = !colorStyle2.whiteStyle.active">
+            change color white
+        </div>
+    </div>
+</body>
+<script>
+    const App = {
+        data() {
+            return {
+                // v-bind pada style
+                newStyle: {
+                    fontSize: '40px',
+                    border: '5px solid yellow'
+                },
+                // v-bind pada class
+                blueColor: true,
+
+                colors: {
+                    blue: true,
+                    white: false
+                },
+
+                colorStyle: {
+                    blueStyle: 'blue',
+                    whiteStyle: 'white'
+                },
+
+                colorStyle2: {
+                    blueStyle: {
+                        name: 'blue',
+                        active: true
+                    },
+                    whiteStyle: {
+                        name: 'white',
+                        active: false
+                    }
+                },
+            }
+        },
+        methods: {
+            
+        },
+    }
+    Vue.createApp(App).mount('#app')
+</script>
+<style>
+    .box {
+        color: white;
+        background: black;
+        padding: 20px;
+    }
+
+    .blue {
+        background: blue;
+    }
+
+    .white {
+        background: white;
+        color: black;
+    }
+
+    .large {
+        font-size: 40px;
+    }
+</style>
+</html>

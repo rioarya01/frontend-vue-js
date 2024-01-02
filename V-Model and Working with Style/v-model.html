@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <form v-on:submit.prevent="handleForm">
+            <!-- fungsi .lazy pada v-model adalah saat user mengetik pada inputan, maka hasil tidak akan muncul terlebih dahulu, dan akan menunggu hasilnya apabila user sudah menyelesaikannya -->
+            <label>firstName</label>
+            <input type="text" v-model.lazy="firstName">
+            {{ firstName }}
+            <hr>
+
+            <label>lastName</label>
+            <input type="text" v-model.lazy="lastName">
+            {{ lastName }}
+            <hr>
+
+            <!-- fungsi .number pada v-model adalah agar hasil yang diterima setelah di submit adalah integer atau angka. Walaupun type yang digunakan masih text, hasil yang diterima adalah angka yang terdapat didepannya -->
+            <label>Age</label>
+            <input type="text" v-model.number="age">
+            {{ age }}
+            <hr>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+<script>
+    const App = {
+        data() {
+            return {
+                firstName: '',
+                lastName: '',
+                age: ''
+            }
+        },
+        methods: {
+            handleForm() {
+                console.log(this.firstName)
+                console.log(this.lastName)
+                console.log(this.age)
+            }
+        },
+    }
+    Vue.createApp(App).mount('#app')
+</script>
+</html>
